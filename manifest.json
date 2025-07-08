@@ -1,15 +1,15 @@
 {
-  "name": "My Weekly Schedule",
-  "short_name": "Schedule",
-  "start_url": "index.html",
+  "name": "My Reminder App",
+  "short_name": "Reminder",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2196f3",
+  "theme_color": "#0d6efd",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3595/3595455.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
     }
   ]
 }

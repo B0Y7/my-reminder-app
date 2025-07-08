@@ -1,19 +1,12 @@
-td, th {
-  vertical-align: middle;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
 }
 
-.row-work {
-  background-color: #e0f7fa;
-}
-.row-commute {
-  background-color: #f1f8e9;
-}
-.row-home {
-  background-color: #fff3e0;
-}
-.row-personal {
-  background-color: #fce4ec;
-}
-.row-sleep {
-  background-color: #ede7f6;
+#calendar {
+  margin-top: 40px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
