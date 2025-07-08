@@ -1,0 +1,19 @@
+td, th {
+  vertical-align: middle;
+}
+
+.row-work {
+  background-color: #e0f7fa;
+}
+.row-commute {
+  background-color: #f1f8e9;
+}
+.row-home {
+  background-color: #fff3e0;
+}
+.row-personal {
+  background-color: #fce4ec;
+}
+.row-sleep {
+  background-color: #ede7f6;
+}
