@@ -1,4 +1,4 @@
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbx4SSMyPML_fD7KlEVx1xnPqJkB5pN-pKrLX41IerLBgm8VDiAEGFmGNbOede3Lv2KnLQ/exec";
+const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbx4SSMyPML_fD7KlEVx1xnPqJkB5pN-pKrLX41IerLBgm8VDiAEGFmGNbOede3Lv2KnLQ/exec";
 
 async function fetchSchedule() {
   try {
@@ -20,20 +20,27 @@ function renderCalendar(data) {
   };
 
   const today = new Date();
-  const weekStart = new Date(today.setDate(today.getDate() - today.getDay()));
+  const weekStart = new Date(today.setDate(today.getDate() - today.getDay())); // Chủ nhật đầu tuần
 
   const events = data.map(row => {
     const offset = dayMap[row.Day];
-    const date = new Date(weekStart);
-    date.setDate(weekStart.getDate() + offset);
+    const eventDate = new Date(weekStart);
+    eventDate.setDate(weekStart.getDate() + offset); // Gán đúng ngày theo thứ
 
-    const dateStr = date.toISOString().split('T')[0];
+    const startTime = new Date(row["Start Time"]);
+    const endTime = new Date(row["End Time"]);
+
+    const startDateTime = new Date(eventDate);
+    startDateTime.setHours(startTime.getUTCHours(), startTime.getUTCMinutes());
+
+    const endDateTime = new Date(eventDate);
+    endDateTime.setHours(endTime.getUTCHours(), endTime.getUTCMinutes());
 
     return {
       title: row.Subject,
-      start: `${dateStr}T${row["Start Time"]}:00`,
-      end: `${dateStr}T${row["End Time"]}:00`,
-      description: row.Description
+      start: startDateTime.toISOString(),
+      end: endDateTime.toISOString(),
+      description: row.Description || ""
     };
   });
 
@@ -67,10 +74,3 @@ function suggestFreeTime(data) {
 }
 
 fetchSchedule();
-
-// PWA
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(() => {
-    console.log("✅ Service Worker registered");
-  });
-}
